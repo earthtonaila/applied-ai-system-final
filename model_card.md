@@ -155,3 +155,62 @@ AI coding tools helped me understand how to structure my Python functions, imple
 What suprised me most was how a relatively simple scoring algorithm could still produce results that felt personalized. Small changes to the scoring weights could significantly influence which songs appeared first. This showed me that recommendation systems reflect the priorities and assumptions built into their algorithms.
 
 If I continued developing VibeFinder, I would expand the dataset and incorporate user feedback. I would also experiment with additional musical features to make the recommendations more diverse and responsive to individual preferences.
+__________________________________________________________________________
+    
+                                FINAL PROJECT
+__________________________________________________________________________
+
+## 1. System Description
+
+This project is a rule-based music recommendation system that ranks songs according to user preferences for genre, mood, and energy.
+
+The original Music Recommender Simulation was extended with input validation, reliability evaluation, automated testing, and logging.
+
+## 2. Intended Use
+
+The system is intended for educational purposes and demonstrates how recommendation algorithms can generate personalized, explainable results.
+
+It is not intended to predict individual listening preferences with high accuracy or replace commercial recommendation systems.
+
+## 3. AI Collaboration During Development
+
+Throughout the development of my Music Recommender Simulation, I used Claude Anthropic's AI Agent as a coding assistant to help extend my original project into a more reliable and explainable recommendation system. AI assistance was particularly useful for understanding how to integrate input validation, automated testing, evaluation metrics, and application logging into my existing Python code.
+
+Rather than replacing my original recommendation algorithm, I used AI-generated suggestions to build upon its existing functionality. I reviewed the proposed changes, organized the new components into separate Python modules, and ran automated tests to verify their behavior. I also used ChatGPT to help structure my system architecture diagram and project documentation.
+
+This collaboration helped me better understand the importance of evaluating software beyond whether it produces an output. I learned how to incorporate reliability checks into an application's workflow, measure recommendation quality, and document limitations. The experience reinforced that AI-generated code should be reviewed and tested rather than assumed to be correct.
+
+## 4. Reliability and Testing
+
+To improve the reliability of my Music Recommender Simulation, I integrated input validation, recommendation evaluation, and application logging into the existing system. Input validation checks that users provide valid genre and mood preferences and an energy value between 0 and 1. The evaluation module verifies the structure and number of recommendations before calculating three quality metrics: genre match rate, mood match rate, and average energy difference.
+
+I implemented four automated unit tests to verify these components. All four tests passed successfully, confirming that the system accepts valid preferences, rejects invalid energy values, calculates genre and mood match rates correctly for the tested examples, and detects incorrect recommendation counts.
+
+Beyond automated testing, I designed three evaluation scenarios representing different listening preferences: high-energy pop, chill lofi, and intense rock. These scenarios allow me to compare recommendation quality across different genres, moods, and energy levels. The results can help identify potential weaknesses in the recommendation algorithm, particularly when the available dataset does not closely match a user's preferences.
+
+Although the automated tests passed, I recognize that technical reliability does not necessarily guarantee recommendation quality. My evaluation metrics measure how closely recommendations align with stated preferences, but they cannot determine whether users actually enjoy the songs. Future improvements could include collecting voluntary user feedback, expanding the dataset, and evaluating alternative scoring weights.
+
+## 5. Potential Biases
+
+The system's recommendations may reflect limitations in the song dataset, including unequal representation of genres, artists, and musical styles.
+
+Its scoring algorithm also prioritizes genre matches more heavily than mood matches, which may not reflect every listener's preferences.
+
+## 6. Ethical Considerations
+
+A recommendation system should avoid presenting subjective musical preferences as objective judgements of quality.
+
+The system uses explicit preference inputs and provides explanations of its scoring, decisions, supporting transparency.
+
+The current implementation does not require collecting personal listening histories.
+
+## 7. Limitations
+    - The system does not learn from feedback
+    - Recommendation quality depends on the dataset
+    - The scoring weights are manually selected
+    - The evaluation does not measure actual user satisfaction
+    - The reliability tests do not cover every possible input
+
+## 8. Future Improvements
+
+Potential improvements include allowing interactive preference entry, gathering voluntary user feedback, expanding genre representation, and testing alternative scoring weights.
