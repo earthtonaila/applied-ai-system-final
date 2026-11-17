@@ -1,0 +1,85 @@
+
+classDiagram
+    direction TB
+
+    class Main {
+        <<module>>
+        +main()
+        +print_header(title)
+        +print_preferences(user_prefs)
+        +print_recommendations(recommendations)
+        +print_evaluation(metrics)
+    }
+
+    class Song {
+        <<dataclass>>
+        +id : int
+        +title : str
+        +artist : str
+        +genre : str
+        +mood : str
+        +energy : float
+        +tempo_bpm : float
+        +valence : float
+        +danceability : float
+        +acousticness : float
+    }
+
+    class UserProfile {
+        <<dataclass>>
+        +favorite_genre : str
+        +favorite_mood : str
+        +target_energy : float
+        +likes_acoustic : bool
+    }
+
+    class Recommender {
+        +songs : List~Song~
+        +recommend(user, k)
+        +explain_recommendation(user, song)
+    }
+
+    class RecommendationFunctions {
+        <<module functions>>
+        +load_songs(csv_path)
+        +score_song(user_prefs, song)
+        +recommend_songs(user_prefs, songs, k)
+    }
+
+    class InputValidation {
+        <<module>>
+        +validate_preferences(user_prefs)
+    }
+
+    class ReliabilityEvaluation {
+        <<module>>
+        +evaluate_recommendations(recommendations, user_prefs, expected_count)
+    }
+
+    class ApplicationLogging {
+        <<Python logging>>
+        +info(message)
+        +error(message)
+    }
+
+    class EvaluationTests {
+        <<unittest>>
+        +test_valid_preferences()
+        +test_invalid_energy()
+        +test_recommendation_metrics()
+        +test_incorrect_recommendation_count()
+    }
+
+    Main --> RecommendationFunctions : generates recommendations
+    Main --> InputValidation : validates preferences
+    Main --> ReliabilityEvaluation : evaluates results
+    Main --> ApplicationLogging : records activity
+
+    Recommender o-- Song : contains
+    Recommender ..> UserProfile : uses
+    Recommender ..> RecommendationFunctions : reuses scoring
+
+    ReliabilityEvaluation ..> RecommendationFunctions : checks results
+
+    EvaluationTests ..> InputValidation : tests
+    EvaluationTests ..> ReliabilityEvaluation : tests
