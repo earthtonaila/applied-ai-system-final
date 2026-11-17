@@ -219,3 +219,28 @@ All four discovered reliability tests passed successfully, confirming that the s
 The system's recommendation quality is further assessed using genre match rate, mood match rate, and average energy difference. These metrics help determine how closely recommended songs align with users' stated preferences.
 
 Limitations: Passing the unit tests does not guarantee that users will enjoy the recommended songs. Recommendation quality also depends on the diversity and accuracy of the song dataset.
+
+## 6. Automated Reliability Testing Summary
+
+The system was evaluated using four automated unit tests to verify input validation and recommendation evaluation.
+
+| Test | Evaluation Criteria | Result |
+|---|---|---|
+| Valid User Preferences | Accept correctly formatted genre, mood, and energy inputs | Pass |
+| Invalid Energy Input | Reject energy values outside the range of 0–1 | Pass |
+| Recommendation Quality Metrics | Correctly calculate genre and mood match rates for sample recommendations | Pass |
+| Incorrect Recommendation Count | Raise an error when the number of recommendations differs from the expected count | Pass |
+
+Results: 4 out of 4 tests passed (100% pass rate).
+
+These tests demonstrate that the system correctly handles the tested validation scenarios and calculates its recommendation metrics as expected. However, the results do not establish the overall accuracy or user satisfaction of the recommendation algorithm.
+
+To verify the reliability of the Music Recommender Simulation, I implemented automated unit tests, input validation, recommendation quality metrics, and application logging.
+
+**Automated Testing Results:** All four reliability unit tests passed successfully (4/4, 100%). These tests verified valid preference handling, invalid energy detection, recommendation metric calculations, and incorrect recommendation count detection.
+
+**Recommendation Quality Metrics:** The system evaluates its recommendations using genre match rate, mood match rate, and average energy difference. These measurements provide insight into how closely recommendations align with user preferences.
+
+**Limitations:** Although all four tests passed, these results do not guarantee that every recommendation will satisfy the listener. Recommendation quality depends on the dataset, manually assigned scoring weights, and individual music preferences.
+
+Detailed testing evidence is available in tests/evaluation_results.md.
