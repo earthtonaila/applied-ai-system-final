@@ -30,21 +30,51 @@ class UserProfile:
     target_energy: float
     likes_acoustic: bool
 
+
 class Recommender:
     """
-    OOP implementation of the recommendation logic.
-    Required by tests/test_recommender.py
+    Object-oriented music recommendation engine.
     """
+
     def __init__(self, songs: List[Song]):
         self.songs = songs
 
     def recommend(self, user: UserProfile, k: int = 5) -> List[Song]:
-        # TODO: Implement recommendation logic
-        return self.songs[:k]
+        preferences = {
+            "favorite_genre": user.favorite_genre,
+            "favorite_mood": user.favorite_mood,
+            "target_energy": user.target_energy
+        }
 
-    def explain_recommendation(self, user: UserProfile, song: Song) -> str:
-        # TODO: Implement explanation logic
-        return "Explanation placeholder"
+        ranked = sorted(
+            self.songs,
+            key=lambda song: score_song(
+                preferences,
+                vars(song)
+            )[0],
+            reverse=True
+        )
+
+        return ranked[:k]
+
+    def explain_recommendation(
+        self,
+        user: UserProfile,
+        song: Song
+    ) -> str:
+
+        preferences = {
+            "favorite_genre": user.favorite_genre,
+            "favorite_mood": user.favorite_mood,
+            "target_energy": user.target_energy
+        }
+
+        score, reasons = score_song(
+            preferences,
+            vars(song)
+        )
+
+        return "; ".join(reasons)
 
 def load_songs(csv_path: str) -> List[Dict]:
     """
